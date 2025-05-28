@@ -1,0 +1,211 @@
+/**
+ * Front-end styles for Code Display Box
+ */
+
+.code-display-box {
+    margin: 20px 0;
+    border: 1px solid #111;
+    border-radius: 4px;
+    overflow: hidden;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+}
+
+.code-display-tabs {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: #0C0A00;
+    border-bottom: 1px solid #ddd;
+}
+
+.code-tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.code-tab:hover {
+    background-color: #343434;
+}
+
+.code-tab.active {
+    background-color: #2B1B17;
+    color: #f1c40f;
+    border-bottom: 2px solid #f1c40f;
+}
+
+.code-display-content {
+    position: relative;
+}
+
+.code-block {
+    display: none;
+    margin: 0;
+    background-color: #f8f9fa;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    tab-size: 4;
+}
+
+.code-block.active {
+    display: block;
+}
+
+/* Prism.js theme customized for Code Display Box */
+code[class*="language-"],
+pre[class*="language-"] {
+    color: #403E43;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+
+pre[class*="language-"] {
+    padding: 1em;
+    margin: 0;
+    overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+    background: #f8f9fa;
+}
+
+/* Tokens */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+    color: #708090;
+}
+
+.token.punctuation {
+    color: #000000;
+}
+
+.token.namespace {
+    opacity: 0.7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+    color: #0070c1;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+    color: #a31515;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+    color: #9a6e3a;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: #0000ff;
+}
+
+.token.function,
+.token.class-name {
+    color: #795e26;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+    color: #001080;
+}
+
+.token.important,
+.token.bold {
+    font-weight: bold;
+}
+
+.token.italic {
+    font-style: italic;
+}
+
+.token.entity {
+    cursor: help;
+}
+
+/* Line highlighting */
+pre[data-line] {
+    position: relative;
+    padding: 1em 0 1em 3em;
+}
+
+.line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit 0;
+    margin-top: 1em;
+    background: rgba(153, 122, 102, 0.08);
+    pointer-events: none;
+    line-height: inherit;
+    white-space: pre;
+}
+
+/* Responsive styles for Code Display Box */
+@media (max-width: 768px) {
+    .code-display-tabs {
+        flex-direction: row;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #888 #222;
+        white-space: nowrap;
+    }
+    .code-tab {
+        flex: 0 0 auto;
+        min-width: 100px;
+        width: auto;
+        text-align: center;
+        white-space: nowrap;
+    }
+    .code-block {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .code-block {
+        font-size: 13px;
+    }
+}
+
+@media (min-width: 1025px) {
+    .code-block {
+        font-size: 14px;
+    }
+}
