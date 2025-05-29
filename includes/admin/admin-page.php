@@ -40,6 +40,12 @@ function code_display_box_admin_page() {
         'hide_empty' => false
     ));
     
+    // Create category map for parent-child relationship
+    $cat_map = [];
+    foreach ($categories as $cat) {
+        $cat_map[$cat->term_id] = $cat;
+    }
+    
     // Get existing code display boxes
     global $wpdb;
     $table_name = $wpdb->prefix . 'code_display_boxes';
@@ -71,8 +77,14 @@ function code_display_box_admin_page() {
                                 <td>
                                     <select id="code-display-box-category" name="code-display-box-category" required>
                                         <option value="">Select a category</option>
-                                        <?php foreach ($categories as $category) : ?>
-                                            <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($category->name); ?></option>
+                                        <?php foreach ($categories as $category) : 
+                                            $display_name = $category->name;
+                                            if ($category->parent && isset($cat_map[$category->parent])) {
+                                                $parent_name = $cat_map[$category->parent]->name;
+                                                $display_name = $parent_name . ' - ' . $category->name;
+                                            }
+                                        ?>
+                                            <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($display_name); ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
@@ -139,8 +151,14 @@ function code_display_box_admin_page() {
                         <div class="code-display-box-filters">
                             <select id="filter-by-category">
                                 <option value="">Filter by Category</option>
-                                <?php foreach ($categories as $category) : ?>
-                                    <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($category->name); ?></option>
+                                <?php foreach ($categories as $category) : 
+                                    $display_name = $category->name;
+                                    if ($category->parent && isset($cat_map[$category->parent])) {
+                                        $parent_name = $cat_map[$category->parent]->name;
+                                        $display_name = $parent_name . ' - ' . $category->name;
+                                    }
+                                ?>
+                                    <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($display_name); ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <select id="filter-by-post" disabled>
@@ -202,8 +220,14 @@ function code_display_box_admin_page() {
                                 <td>
                                     <select id="edit-code-display-box-category" name="edit-code-display-box-category" required>
                                         <option value="">Select a category</option>
-                                        <?php foreach ($categories as $category) : ?>
-                                            <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($category->name); ?></option>
+                                        <?php foreach ($categories as $category) : 
+                                            $display_name = $category->name;
+                                            if ($category->parent && isset($cat_map[$category->parent])) {
+                                                $parent_name = $cat_map[$category->parent]->name;
+                                                $display_name = $parent_name . ' - ' . $category->name;
+                                            }
+                                        ?>
+                                            <option value="<?php echo esc_attr($category->term_id); ?>"><?php echo esc_html($display_name); ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                 </td>
