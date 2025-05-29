@@ -3,7 +3,7 @@
  * Plugin Name: Code Display Box
  * Description: Creates tabbed code display boxes for different programming languages
  * Version: 1.0
- * Author: Lovable
+ * Author: Twinkle Goud
  */
 
 // Exit if accessed directly
